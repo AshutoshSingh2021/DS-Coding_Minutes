@@ -13,7 +13,7 @@ int convertToBinary(int n)
         p = p * 10;
         n = n >> 1;
     }
-    return ans;
+    return ans >> 1;
 }
 
 int main()
@@ -21,7 +21,9 @@ int main()
     int n;
     cin >> n;
 
-    cout << convertToBinary(n) << endl;
+    string str = to_string(convertToBinary(n));
+
+    cout << str << endl;
 
     return 0;
 }
