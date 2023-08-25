@@ -1,4 +1,4 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
 void takeInput(int arr[], int n)
@@ -10,24 +10,25 @@ void takeInput(int arr[], int n)
     }
 }
 
-void printArray(int arr[], int n)
+int uniqueElement(int arr[], int n)
 {
-    cout << "The resultant array is: " << endl;
+    unordered_map<int, int> freq;
+    int unique = INT_MAX;
     for (int i = 0; i < n; i++)
     {
-        cout << arr[i] << " ";
+        freq[arr[i]]++;
     }
-}
 
-void swapAlternate(int arr[], int n)
-{
-    for (int i = 0; i < n; i += 2)
+    int val;
+    for (auto it : freq)
     {
-        if (i + 1 < n)
+        if (it.second < unique)
         {
-            swap(arr[i], arr[i + 1]);
+            unique = it.second;
+            val = it.first;
         }
     }
+    return val;
 }
 
 int main()
@@ -38,7 +39,8 @@ int main()
     cin >> n;
     int arr[n];
     takeInput(arr, n);
-    swapAlternate(arr, n);
-    printArray(arr, n);
+    int ans = uniqueElement(arr, n);
+    cout << "The unique element in the array is: " << ans;
+
     return 0;
 }
